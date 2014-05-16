@@ -1,0 +1,20 @@
+---
+
+- name: Fetch report files
+  git:
+   dest: "{{ reports_tmp }}"
+   repo: "{{ reports_repo }}"
+   ssh_opts: -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+
+- name: Install report files
+  command: cp -rf {{ reports_tmp }} {{ reports_dir }}
+
+- name: Create symlinks to report files for birtviewer
+  file:
+    src: "{{ reports_dir }}/{{ item.src }}" 
+    dest: "{{ birtviewer_dir }}/{{ item.dst }}" 
+    state: link
+  with_items: 
+   - { src: redmine.rptlibrary, dst: redmine.rptlibrary }
+   - { src: forge_stories_status.rptdesign, dst: forge_stories_status.rptdesign }
+   - { src: forge_issues_status.rptdesign, dst: forge_issues_status.rptdesign }

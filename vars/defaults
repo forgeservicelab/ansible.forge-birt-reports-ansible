@@ -1,0 +1,10 @@
+---
+# Default variables, change these
+
+remote_user: redmine
+ansible_ssh_user: redmine
+ansible_ssh_private_key_file: vars/id_rsa
+reports_dir: /var/lib/tomcat6/webapps/birt-viewer/forge_birt_reports
+reports_tmp: /tmp/forge_birt_reports
+reports_repo: ssh://gitlab@git.forgeservicelab.fi:10022/forge/forge-birt-reports.git
+birtviewer_dir: /var/lib/tomcat6/webapps/birt-viewer

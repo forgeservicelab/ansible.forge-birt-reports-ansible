@@ -1,0 +1,7 @@
+---
+- hosts: birtviwer
+  vars_files:
+    - vars/defaults
+  roles:
+    - reports
+
