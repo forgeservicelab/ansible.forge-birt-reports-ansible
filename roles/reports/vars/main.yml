@@ -1,8 +1,4 @@
 ---
 # Default variables, change these
 
-reports_dir: /var/lib/tomcat6/webapps/birt-viewer/forge_birt_reports
-reports_tmp: /tmp/forge_birt_reports
-reports_repo: ssh://gitlab@git.forgeservicelab.fi:10022/forge/forge-birt-reports.git
-birtviwer_dir: /var/lib/tomcat6/webapps/birt-viewer
 

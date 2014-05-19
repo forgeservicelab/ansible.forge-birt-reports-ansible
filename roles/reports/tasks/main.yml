@@ -7,7 +7,7 @@
    ssh_opts: -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
 
 - name: Install report files
-  command: cp -rf {{ reports_tmp }} {{ reports_dir }}
+  command: cp -rf {{ reports_tmp }} {{ birtviewer_dir }}
 
 - name: Create symlinks to report files for birtviewer
   file:
