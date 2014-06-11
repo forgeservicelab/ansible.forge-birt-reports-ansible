@@ -6,8 +6,9 @@ Ansible playbook to deploy FORGE BIRT reports to existing Tomcat running birt-vi
 Prerequisites
 -------------
 
-- The target machine(s) have to be already instantiated and running Tomcat and birt-viwer web app as a redmine user.
-- You have a ssh key to access target machine as a redmine user.
+- The target machine(s) have to be already instantiated and running Tomcat and birt-viwer web app.
+- The target machine has a redmine user that has your desired public key in ~redmine/.ssh/authorized_key file
+- You have the corresponding private key in your ~/.ssh/id_rsa to access target machine as a redmine user.
 
 ### The inventory file
 

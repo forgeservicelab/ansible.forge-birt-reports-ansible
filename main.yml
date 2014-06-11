@@ -1,5 +1,5 @@
 ---
-- hosts: birtviwer
+- hosts: birtviewer
   vars_files:
     - vars/defaults
   roles:
