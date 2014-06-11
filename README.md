@@ -23,7 +23,7 @@ This playbook requires a number of configuration variables which are pre defined
 
 After running the playbook, the newly deployed BIRT reports are available at the target machine as follows.
 
-   http://[target machine]/birt-viewer/run?__report=[report name]&sample=my+parameter   
+   http://{{ target_ip }}/birt-viewer/run?__report={{ reports_dir }}/{{ report_name }}&sample=my+parameter   
 
    e.g.
-   http://193.166.24.102/birt-viewer/run?__report=forge_issues_status.rptdesign&sample=my+parameter
+   http://193.166.24.102/birt-viewer/run?__report=forge_birt_reports/forge_issues_status.rptdesign&sample=my+parameter
