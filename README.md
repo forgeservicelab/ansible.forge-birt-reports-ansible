@@ -7,12 +7,12 @@ Prerequisites
 -------------
 
 - The target machine(s) have to be already instantiated and running Tomcat and birt-viwer web app.
-- The target machine has a redmine user that has your desired public key in ~redmine/.ssh/authorized_key file
-- You have the corresponding private key in your ~/.ssh/id_rsa to access target machine as a redmine user.
+- The target machine has a birt user that has your desired public key in ~birt/.ssh/authorized_key file
+- You have the corresponding private key in your ~/.ssh/id_rsa to access target machine as a birt user.
 
 ### The inventory file
 
-This playbook targets at existing Tomcat node 193.166.24.102 running birt-viwer web app. The node is configured in inventory file. Run the playbook as
+This playbook targets at existing Tomcat node analytics.forgeservicelab.fi running birt-viwer web app. The node is configured in inventory file. Run the playbook as
 
     $ ansible-playbook -i inventory main.yml 
 
@@ -27,4 +27,4 @@ After running the playbook, the newly deployed BIRT reports are available at the
    http://{{ target_ip }}/birt-viewer/run?__report={{ reports_dir }}/{{ report_name }}&sample=my+parameter   
 
    e.g.
-   http://193.166.24.102/birt-viewer/run?__report=forge_birt_reports/forge_issues_status.rptdesign&sample=my+parameter
+   http://analytics.forgeservicelab.fi:8080/birt-viewer/run?__report=forge_birt_reports/forge_issues_status.rptdesign&sample=my+parameter
