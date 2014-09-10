@@ -1,0 +1,41 @@
+---
+
+- name: Install required packages
+  apt:
+    pkg={{ item }}
+    state=latest
+  with_items:
+    - tomcat7
+    - unzip
+
+- name: Setup BIRT user
+  user: name=birt
+
+- name: Setup birt user authorized key
+  authorized_key: user=birt key="{{ lookup('file', 'keys/birt_user.pub') }}"
+
+# It's better to copy this manually once the playbook has been run once
+#- name: Setup git_access_private_key
+#  copy: scr=keys/git_acess_key dest=/home/birt/.ssh/git_access_key mode=0600
+
+- name: Unzip BIRT viwer package to tmp
+  unarchive: src=birt-runtime-4_4_1-20140916.zip dest="/tmp/"
+
+- name: Install sql connectors
+  copy: src={{ item }} dest={{ birtviewer_dir }}/WEB-INF/lib/ 
+  with_items: 
+   - mysql-connector-java-5.1.31-bin.jar
+   - postgresql-9.3-1102.jdbc41.jar
+
+- name: Create birtviewer directory
+  file: path="{{ birtviewer_dir }}" state=directory
+
+- name: Copy BIRT webapp to birtviewer directory
+  shell: cp -rf /tmp/birt-runtime-4_4_1/WebViewerExample/* {{ birtviewer_dir }}
+
+- name: Remove tmp files
+  shell: rm -rf /tmp/birt-runtime-4_4_1
+
+- name: Start Tomcat
+  service: name=tomcat7 state=started
+  register: start

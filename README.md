@@ -1,26 +1,38 @@
 FORGE BIRT Reports
-==================
+====================
 
-Ansible playbook to deploy FORGE BIRT reports to existing Tomcat running birt-viewer web app.
+Ansible playbook with two roles birtviewer and reports. 
 
-Prerequisites
--------------
+1. The birtviewer role deploys Tomcat, SQL connectors and birt runtime webapp as a user (e.g. Ubuntu) that has ssh and sudo access to the target machine. This role also creates a birt user with authorized_ssh key (birt_user.pub)
+2. Reports role deploys report designs for birt runtime. Reports are fetched from git as a birt user. Therefore the birt user has to have a correct private key in the target machines ~birt/.ssh/git_acess_key. You either transfer this file manually to the target machine or replace roles/birtviewer/keys/git_access_key with correct private key that can access git.
 
-- The target machine(s) have to be already instantiated and running Tomcat and birt-viwer web app.
-- The target machine has a birt user that has your desired public key in ~birt/.ssh/authorized_key file
-- You have the corresponding private key in your ~/.ssh/id_rsa to access target machine as a birt user.
+Check these
+--------------------
+ 
+group_vars/all.yml - Username defined here (E.g. Ubuntu) is being used to access target machine during birtviewer deployment. The user has to have a ssh access with sudo rights to the target machine.
+roles/birtviewer/files - Contains birt runtime and mysql connector files. You might want to update these.
 
-### The inventory file
+Before running the playbook
+--------------------
+
+roles/birtviewer/keys/birt_user.pub - Replace this file with the public key you want to use when making a ssh connection to target machine. This becomes autorized_key.
+Note! You have to have a private key counterpart of birt_user.pub in your local ~/.ssh/id_rsa that can access the target machine user (E.g. Ubuntu)
+
+After running the playbook for the first time
+--------------------
+
+Copy git_acess_key to target machine ~/birt/.ssh/git_acess_key manually.
+Then rerun the playbook to again and it's able to fetch reports too with this key.
+
+The inventory file
+--------------------
 
 This playbook targets at existing Tomcat node analytics.forgeservicelab.fi running birt-viwer web app. The node is configured in inventory file. Run the playbook as
 
     $ ansible-playbook -i inventory main.yml 
 
-### Configuration variables
-
-This playbook requires a number of configuration variables which are pre defined except ssh key to access target machine. See vars/defaults for more info and copy the ssh key to vars/id_rsa before running the playbook.
-
-### After running the playbook
+After running the playbook
+--------------------
 
 After running the playbook, the newly deployed BIRT reports are available at the target machine as follows.
 

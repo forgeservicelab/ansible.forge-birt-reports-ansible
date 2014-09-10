@@ -1,8 +1,8 @@
 ---
 # Default variables, change these
 
-remote_user: birt
-ansible_ssh_user: birt
+remote_user: ubuntu
+ansible_ssh_user: ubuntu
 reports_dir: forge_birt_reports
 reports_tmp: /tmp/{{ reports_dir }}
 reports_repo: ssh://gitlab@git.forgeservicelab.fi:10022/forge/forge-birt-reports.git
