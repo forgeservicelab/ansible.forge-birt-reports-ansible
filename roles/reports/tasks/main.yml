@@ -5,7 +5,7 @@
    dest: "{{ reports_tmp }}"
    repo: "{{ reports_repo }}"
    ssh_opts: -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-   key_file: "/home/birt/.ssh/{{ git_access_key }}
+   key_file: "/home/birt/.ssh/{{ git_access_key }}"
   sudo_user: birt
 
 - name: Install report files

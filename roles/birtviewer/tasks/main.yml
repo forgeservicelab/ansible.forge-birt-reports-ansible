@@ -14,10 +14,10 @@
 - name: Setup authorized keys
   authorized_key: 
     user: birt
-    key: "{{ item }}"
-    with_items:
-      - "{{ lookup('file', 'keys/birt.pub') }}"
-      - "{{ lookup('file', 'keys/jenkins.pub') }}"
+    key: "{{ lookup('file', 'keys/%s.pub' % item) }}"
+  with_items:
+    - birt
+    - jenkins
 
 # Install git_access_key. It's better to copy this manually once the playbook has been run once
 #- name: Setup git_access_private_key
