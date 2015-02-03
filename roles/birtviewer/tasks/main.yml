@@ -11,10 +11,18 @@
 - name: Setup BIRT user
   user: name=birt
 
+# - command: pwda
+#   register: result 
+#   connection: local
+#   sudo: False
+  
+# - debug:
+#     msg: '{{ result }}'
+  
 - name: Setup authorized keys
   authorized_key: 
     user: birt
-    key: "{{ lookup('file', 'keys/%s.pub' % item) }}"
+    key: "{{ lookup('file', './roles/birtviewer/keys/%s.pub' % item) }}"
   with_items:
     - birt
     - jenkins
