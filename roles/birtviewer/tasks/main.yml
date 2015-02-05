@@ -49,7 +49,7 @@
   file: path="{{ birtviewer_dst }}" state=directory
 
 - name: Copy BIRT webapp to birtviewer directory
-  shell: cp -rf "/tmp/{{ birt_runtime_unzipdir }}/WebViewerExample/*" "{{ birtviewer_dst }}"
+  shell: cp -rf /tmp/{{ birt_runtime_unzipdir }}/WebViewerExample/* {{ birtviewer_dst }}/
 
 - name: Remove tmp files
   shell: rm -rf "/tmp/{{ birt_runtime_unzipdir }}"
