@@ -1,10 +1,11 @@
 ---
-# Default variables, change these
 
+# Default variables, change these if you will
 remote_user: ubuntu
 ansible_ssh_user: ubuntu
+birt_user: birt
+
+# Files
 git_access_key: id_dsa
-reports_dir: forge_birt_reports
-reports_tmp: /tmp/{{ reports_dir }}
-reports_repo: ssh://gitlab@git.forgeservicelab.fi:10022/forge/forge-birt-reports.git
-birtviewer_dir: /var/lib/tomcat7/webapps/birt-viewer
+birt_ssh_pubkey: birt.pub
+jenkins_ssh_pubkey: jenkins.pub

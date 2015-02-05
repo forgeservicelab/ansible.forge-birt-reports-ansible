@@ -9,4 +9,4 @@
   sudo_user: birt
 
 - name: Install report files
-  shell: cp -rf {{ reports_tmp }}/* {{ birtviewer_dir }}
+  shell: cp -rf {{ reports_tmp }}/* {{ birtviewer_dst }}

@@ -9,7 +9,7 @@
     - unzip
 
 - name: Setup BIRT user
-  user: name=birt
+  user: name="{{ birt_user }}"
 
 # - command: pwda
 #   register: result 
@@ -21,37 +21,38 @@
   
 - name: Setup authorized keys
   authorized_key: 
-    user: birt
-    key: "{{ lookup('file', './roles/birtviewer/keys/%s.pub' % item) }}"
+    user: "{{ birt_user }}"
+    key: "{{ lookup('file', '%s' % item) }}"
   with_items:
-    - birt
-    - jenkins
+    - "files/{{ birt_ssh_pubkey }}"
+    - "files/{{ jenkins_ssh_pubkey }}"
 
 # Install git_access_key. It's better to copy this manually once the playbook has been run once
 #- name: Setup git_access_private_key
-#  copy: scr="keys/{{ git_acess_key }}" dest="/home/birt/.ssh/{{ git_access_key }}" mode=0600
+#  copy: scr="files/{{ git_acess_key }}" dest="/home/birt/.ssh/{{ git_access_key }}" mode=0600
 
 - name: Unzip BIRT viwer package to tmp
   unarchive:
-    src: birt-runtime-4_4_1-20140916.zip
+    src: "{{ birt_runtime }}"
     dest: /tmp/
+  tags: notthis
 
 - name: Install sql connectors
   copy: 
     src: "{{ item }}"
-    dest: "{{ birtviewer_dir }}/WEB-INF/lib/" 
+    dest: "{{ birtviewer_dst }}/WEB-INF/lib/" 
   with_items: 
-   - mysql-connector-java-5.1.31-bin.jar
-   - postgresql-9.3-1102.jdbc41.jar
+   - "{{ mysql_connector }}"
+   - "{{ psql_connector }}"
 
 - name: Create birtviewer directory
-  file: path="{{ birtviewer_dir }}" state=directory
+  file: path="{{ birtviewer_dst }}" state=directory
 
 - name: Copy BIRT webapp to birtviewer directory
-  shell: cp -rf /tmp/birt-runtime-4_4_1/WebViewerExample/* {{ birtviewer_dir }}
+  shell: cp -rf "/tmp/{{ birt_runtime_unzipdir }}/WebViewerExample/*" "{{ birtviewer_dst }}"
 
 - name: Remove tmp files
-  shell: rm -rf /tmp/birt-runtime-4_4_1
+  shell: rm -rf "/tmp/{{ birt_runtime_unzipdir }}"
 
 - name: Start Tomcat
   service: name=tomcat7 state=started
