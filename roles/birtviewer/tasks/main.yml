@@ -50,10 +50,12 @@
 
 - name: Copy BIRT webapp to birtviewer directory
   shell: cp -rf /tmp/{{ birt_runtime_unzipdir }}/WebViewerExample/* {{ birtviewer_dst }}/
-
+  notify:
+    - restart apache
+  
 - name: Remove tmp files
   shell: rm -rf "/tmp/{{ birt_runtime_unzipdir }}"
 
 - name: Start Tomcat
   service: name=tomcat7 state=started
-  register: start
+
