@@ -1,4 +1,4 @@
 ---
   
-- name: restart apache
-  service: name=apache state=restarted
+- name: restart tomcat
+  service: name=tomcat7 state=restarted
