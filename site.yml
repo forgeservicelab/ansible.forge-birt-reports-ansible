@@ -2,6 +2,6 @@
 - hosts: all
   sudo: True
   roles:
-    - birtviewer
-    - reports
+    - birt-viewer
+    - birt-reports
 

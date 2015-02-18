@@ -1,7 +1,7 @@
-- src: git+ssh://gitlab@git.forgeservicelab.fi:10022/ansible-roles/birtviewer.git
+- src: git+ssh://gitlab@git.forgeservicelab.fi:10022/ansible-roles/birt-viewer.git
   path: roles/
-  name: birtviewer
+  name: birt-viewer
 
-- src: git+ssh://gitlab@git.forgeservicelab.fi:10022/ansible-roles/reports.git
+- src: git+ssh://gitlab@git.forgeservicelab.fi:10022/ansible-roles/birt-reports.git
   path: roles/
-  name: reports
+  name: birt-reports
