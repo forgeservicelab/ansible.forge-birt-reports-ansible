@@ -12,9 +12,3 @@ sslkey: '/etc/ssl/forgeservicelab.fi.key'
 git_access_key: git_access_key
 birt_ssh_pubkey: birt.pub
 jenkins_ssh_pubkey: jenkins.pub
-
-# apach2 site conf default-ssl.conf
-birt_viewer:
-  server_name: "analytics.forgeservicelab.fi"
-  allow_ip: "83.150.108.249 193.166.1.222 213.145.192.7 193.166.24.248/31 193.166.24.246/31 193.166.24.235/32 193.166.24.250/32 193.166.24.236/30" # DIGILE, CSC, KE, Selenium GRID
-  
