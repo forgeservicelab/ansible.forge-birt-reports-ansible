@@ -3,5 +3,6 @@
   sudo: True
   roles:
     - birt-viewer
+    - forge_ssl
 
 

@@ -5,3 +5,9 @@
 - src: git+ssh://gitlab@git.forgeservicelab.fi:10022/ansible-roles/birt-reports.git
   path: roles/
   name: birt-reports
+
+- src: git+ssh://gitlab@git.forgeservicelab.fi:10022/ansible-roles/forge_ssl.git
+  path: roles/
+  name: forge_ssl
+
+  
