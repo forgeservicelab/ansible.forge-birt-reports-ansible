@@ -1,1 +1,9 @@
+[development]
 193.166.25.75 ansible_ssh_user=birt
+
+[testing]
+193.166.25.75 ansible_ssh_user=birt
+
+[production]
+analytics.forgeservicelab.fi ansible_ssh_user=birt
+
