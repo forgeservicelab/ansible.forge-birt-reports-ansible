@@ -1,8 +1,11 @@
 ---
 
-# apach2 site conf default-ssl.conf
-birt_viewer:
+# apache2 site conf default-ssl.conf for the testing target
+apache:
   server_name: "193.166.25.75"
   allow_ip: "83.150.108.249 193.166.24.248/31 193.166.24.246/31 193.166.24.235/32 193.166.24.250/32 193.166.24.236/30"
+  sslcert: '/etc/ssl/certs/ssl-cert-snakeoil.pem'
+  sslkey: '/etc/ssl/private/ssl-cert-snakeoil.key'
+  # sslchain: '/etc/ssl/forgeservicelab.fi.crt.chain'
 
   

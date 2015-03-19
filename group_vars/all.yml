@@ -1,14 +1,24 @@
 ---
 
-# Default variables, change these if you will
-remote_user: ubuntu
-ansible_ssh_user: ubuntu
-birt_user: birt
-sslcert: '/etc/ssl/forgeservicelab.fi.crt'
-sslchain: '/etc/ssl/forgeservicelab.fi.crt.chain'
-sslkey: '/etc/ssl/forgeservicelab.fi.key'
+# Override birt-viewer role defaults
+birt_viewer:
+  user: birt
+  auth_keys:
+    - 'birt.pub'
+    - 'jenkins.pub'
+  repo_access_key: git_access_key
 
-# Files
-git_access_key: git_access_key
-birt_ssh_pubkey: birt.pub
-jenkins_ssh_pubkey: jenkins.pub
+apache:
+  server_name: "localhost" # ServerName e.g. myserver.domain.com
+  allow_ip: "83.150.108.249" # Allow http connections from
+  sslcert: '/etc/ssl/certs/ssl-cert-snakeoil.pem'
+  sslkey: '/etc/ssl/private/ssl-cert-snakeoil.key'
+  # sslchain: '/etc/ssl/forgeservicela1b.fi.crt.chain'
+  
+# Override birt-reports role defaults
+birt_reports:
+  user: birt
+  repo_access_key: git_access_key
+  repo: ssh://gitlab@git.forgeservicelab.fi:10022/forge/forge-birt-reportdesigns.git
+
+

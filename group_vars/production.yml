@@ -1,6 +1,9 @@
 ---
 
-# apach2 site conf default-ssl.conf
-birt_viewer:
+# apache2 site conf default-ssl.conf for the production target
+apache:
   server_name: "analytics.forgeservicelab.fi"
   allow_ip: "83.150.108.249 193.166.1.222 213.145.192.7 193.166.24.248/31 193.166.24.246/31 193.166.24.235/32 193.166.24.250/32 193.166.24.236/30" # DIGILE, CSC, KE, Selenium GRID
+  sslcert: '/etc/ssl/forgeservicelab.fi.crt'
+  sslchain: '/etc/ssl/forgeservicelab.fi.crt.chain'
+  sslkey: '/etc/ssl/forgeservicelab.fi.key'
